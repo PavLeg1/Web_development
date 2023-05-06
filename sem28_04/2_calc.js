@@ -3,7 +3,7 @@ let secondNumber = Number(prompt("Enter the second number:"));
 let char = prompt("Enter an operatiion (+, -, *, /)")
 let result;
 
-switch(char):
+switch(char){
     case '+': 
         result = firstNumber + secondNumber;
         break;
@@ -21,6 +21,4 @@ switch(char):
           prompt(result);
         }
         break;
-
-
-
+}
