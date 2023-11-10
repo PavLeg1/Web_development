@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  </head>
+
+<body>
+  <div id="root"></div>
+</body>
+<!-- This setup is not suitable for production. -->
+<!-- Only use it in development! -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react?dev",
+    "react-dom/client": "https://esm.sh/react-dom/client?dev"
+  }
+}
+</script>
+<script type="text/babel" data-type="module">
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+
+const people = [{
+  id: 0,
+  name: 'Creola Katherine Johnson',
+  profession: 'mathematician',
+  known_for: 'Astronomical calculations',
+  imageId: 'MK3eW3A',
+}, {
+  id: 1,
+  name: 'Mario José Molina-Pasquel Henríquez',
+  profession: 'chemist',
+  known_for: 'Saving the ozone layer',
+  imageId: 'mynHUSa',
+}, {
+  id: 2,
+  name: 'Mohammad Abdus Salam',
+  profession: 'physicist',
+  known_for: 'Theory of electroweak unification',
+  imageId: 'bE7W1ji',
+}, {
+  id: 3,
+  name: 'Percy Lavon Julian',
+  profession: 'chemist',  
+  known_for: 'The first synthesized physostigmine',
+  imageId: 'IOjWm71',
+}, {
+  id: 4,
+  name: 'Subrahmanyan Chandrasekhar',
+  profession: 'astrophysicist',
+  known_for: 'Studying supernovae',
+  imageId: 'lrWQx8l',
+}];
+
+const chemists = people.filter(person =>
+  person.profession === 'chemist'
+);
+
+const mathematicians = people.filter(person =>
+  person.profession === 'mathematician'
+);
+
+const astrophysicists = people.filter(person =>
+  person.profession === 'astrophysicist'
+);
+
+const physicists = people.filter(person =>
+  person.profession === 'physicist'
+);
+
+function getImageUrl(person) {
+  return (
+    'https://i.imgur.com/' +
+    person.imageId +
+    's.jpg'
+  );
+}
+
+let App = function List() {
+//   const chemistItems = chemists.map(chemist =>
+//   <li key={chemist.id}>
+//     <img src={getImageUrl(chemist)} alt={chemist.name} />
+//     {chemist.name} | famous for: {chemist.known_for}
+//   </li>
+// );
+
+const chemistItems = chemists.map(chemist => (
+  <li key={chemist.id} style={{ display: 'flex', alignItems: 'center' }}>
+    <img
+      src={getImageUrl(chemist)}
+      alt={chemist.name}
+      style={{ marginRight: '10px' }}
+    />
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <span style={{ fontWeight: 'bold' }}>{chemist.name}</span>
+      <span>{chemist.known_for}</span>
+    </div>
+  </li>
+));
+
+//   const astrophysicistItems = astrophysicists.map(astrophysicist =>
+//   <li key={astrophysicist.id}>
+//     <img src={getImageUrl(astrophysicist)} alt={astrophysicist.name} />
+//     {astrophysicist.name} | famous for: {astrophysicist.known_for}
+//   </li>
+// );
+
+const mathematicianItems = mathematicians.map(mathematician => (
+  <li key={mathematician.id} style={{ display: 'flex', alignItems: 'center' }}>
+    <img
+      src={getImageUrl(mathematician)}
+      alt={mathematician.name}
+      style={{ marginRight: '10px' }}
+    />
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <span style={{ fontWeight: 'bold' }}>{mathematician.name}</span>
+      <span>{mathematician.known_for}</span>
+    </div>
+  </li>
+));
+
+//   const astrophysicistItems = astrophysicists.map(astrophysicist =>
+//   <li key={astrophysicist.id}>
+//     <img src={getImageUrl(astrophysicist)} alt={astrophysicist.name} />
+//     {astrophysicist.name} | famous for: {astrophysicist.known_for}
+//   </li>
+// );
+
+const astrophysicistItems = astrophysicists.map(astrophysicist => (
+  <li key={astrophysicist.id} style={{ display: 'flex', alignItems: 'center' }}>
+    <img
+      src={getImageUrl(astrophysicist)}
+      alt={astrophysicist.name}
+      style={{ marginRight: '10px' }}
+    />
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <span style={{ fontWeight: 'bold' }}>{astrophysicist.name}</span>
+      <span>{astrophysicist.known_for}</span>
+    </div>
+  </li>
+));
+
+//   const physicistItems = physicists.map(physicist =>
+//   <li key={physicist.id}>
+//     <img src={getImageUrl(physicist)} alt={physicist.name} />
+//     {physicist.name} | famous for: {physicist.known_for}
+//   </li>
+// );
+
+const physicistItems = physicists.map(physicist => (
+  <li key={physicist.id} style={{ display: 'flex', alignItems: 'center' }}>
+    <img
+      src={getImageUrl(physicist)}
+      alt={physicist.name}
+      style={{ marginRight: '10px' }}
+    />
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <span style={{ fontWeight: 'bold' }}>{physicist.name}</span>
+      <span>{physicist.known_for}</span>
+    </div>
+  </li>
+));
+
+  return (
+    <div>
+      <h2>Chemists:</h2>
+      <ul>{chemistItems}</ul>
+
+      <h2>Mathematicians:</h2>
+      <ul>{mathematicianItems}</ul>
+
+      <h2>Astrophysicists:</h2>
+      <ul>{astrophysicistItems}</ul>
+
+      <h2>Physicists:</h2>
+      <ul>{physicistItems}</ul>
+    </div>
+  );
+}
+
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+</script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+h4 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+h5 {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+h6 {
+  margin-top: 0;
+  font-size: 12px;
+}
+
+code {
+  font-size: 1.2em;
+}
+
+ul {
+  padding-inline-start: 20px;
+}
+
+li { margin-bottom: 10px; }
+
+</style>
+</html>
